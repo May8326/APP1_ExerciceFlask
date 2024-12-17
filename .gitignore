@@ -1,2 +1,5 @@
 # Fichier env
 app1/.env
+
+# environnement virtuel
+env/
