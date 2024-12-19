@@ -11,9 +11,9 @@
         <p>Code HTTP : {{ status_code }}</p>
         <p>Type de contenu : {{ content_type }}</p>
     
-    {% if entity_data %}
+    {% if id_donnees %}
         <h2>Données de l'entité</h2>
-        <p>{{ entity_data | tojson(indent=4) }}</p>
+        <p>{{ id_donnees | tojson(indent=4) }}</p>
     {% else %}
         <h2 style="color: red;">Aucune donnée valide n'a été retournée pour l'ID "{{ wikidata_id }}".</h2>
     {% endif %}
