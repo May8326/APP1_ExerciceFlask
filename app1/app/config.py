@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 dotenv.load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # constante de l'url de l'API de wikidata
-WIKIDATA_API_URL = "https://www.wikidata.org/w/api.php"
+WIKIDATA_API_URL = "https://wikidata.org/w/api.php"
 
 
 def to_bool(s):
