@@ -7,6 +7,13 @@ import requests
 # définition de la route interroger l'API de wikidata
 @app.route("/retrieve_wikidata/<id>", methods=["GET"])
 def retrieve_wikidata(id):
+    """
+    Récupère les informations d'une entité Wikidata
+    :param id: l'identifiant de l'entité Wikidata
+    :type id: str   
+    
+    :return: le JSON de l'entité Wikidata
+    """
 
     # Paramètres de la requête
     params = {
@@ -19,11 +26,9 @@ def retrieve_wikidata(id):
     data = requests.get(WIKIDATA_API_URL, params=params)
     data_json = data.json()
 
-    # définition des valeurs pour le jinja
-
-
     # Vérification des erreurs
     if "error" in data_json:
+
         # Récupère l'erreur
         error_message = data_json["error"]["info"]
         # Renvoie le HTML avec l'erreur
@@ -35,7 +40,7 @@ def retrieve_wikidata(id):
             error_message=error_message  # Transmettre l'erreur pour le HTML
         )
     
-    # Si tout a marché
+    # Si ma requête n'a pas renvoyé d'erreur
     else:
         # Renvoie le HTML avec le JSON
         return render_template("pages/retrieve_wikidata.html", 
