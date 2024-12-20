@@ -17,21 +17,26 @@ def retrieve_wikidata(id):
     params = {
         "action": "wbgetentities",
         "ids": id,
-        "format": "json",
-        "languages": "fr"
+        "format": "json"
     }
 
-    # Appel de l'API
-    data = requests.get(WIKIDATA_API_URL, params=params)
     # Récupération du JSON
-    data = data.json()
+    data = requests.get(WIKIDATA_API_URL, params=params)
+    data_json = data.json()
+
+    # définition des valeurs pour le jinja
+
 
     # Requête
     try:
-        #return data (test)
-        return render_template("pages/retrieve_wikidata.html")  # Renvoie les données de l'entité
+        #return data ()
+        return render_template("pages/retrieve_wikidata.html", 
+                               wikidata_id = id,
+                               status_code = data.status_code,
+                               content_type = data.headers.get('Content-Type'), 
+                               data_json = data_json)  # Renvoie les données de l'entité
     
 # Message d'erreur si l'ID n'est pas valide
-
+    
     except:
         return f"Aucune donnée valide n'a été retournée pour l'ID {id}"
